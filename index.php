@@ -3,10 +3,6 @@
 require_once 'actions.php';
 
 session_start();
-$action = $_GET['action']?: 'index';
 
-if (!function_exists($action)) {
-    $action = 'index';
-}
-
+$action = function_exists($_GET['action'])? $_GET['action'] : 'index';
 $action();
