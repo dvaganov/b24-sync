@@ -22,3 +22,7 @@ body {
 .form-horizontal .form-control:focus {
   z-index: 2;
 }
+
+h2.form-horizontal {
+    text-align: center;
+}

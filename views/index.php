@@ -9,6 +9,9 @@
     </head>
     <body>
         <div class="container-fluid">
+            <?php if ($refresh_token) : ?>
+            <h2 class="form-horizontal">Все данные успешно получены. Можно приступать к работе!</h2>
+            <?php else : ?>
             <form class="form-horizontal" action="./?action=setup" method="post">
                 <?php if ($error_msg) : ?>
                     <div class="alert alert-danger">
@@ -43,5 +46,6 @@
                     <input type="submit" name="" value="Получить" class="btn btn-lg btn-primary btn-block">
                 </div>
             </form>
+        <?php endif; ?>
     </body>
 </html>
