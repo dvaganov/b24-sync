@@ -1,8 +1,6 @@
 <?php
 
-require_once 'actions.php';
+require_once 'Application.php';
 
-session_start();
-
-$action = function_exists($_GET['action'])? $_GET['action'] : 'index';
-$action();
+$app = new \B24\Application();
+$app->run();
