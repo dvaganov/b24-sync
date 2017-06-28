@@ -9,13 +9,17 @@ class Application
     private $db = './db.sqlite3';
     private $action = 'index';
     private $uuid;
+    private $sid;
 
     /**
      * Создаёт и инициализирует приложение
      */
     public function __construct()
     {
-        session_id($_GET['sid']);
+        // Передаем id сессии через состояние при авторизации
+        $this->sid = $_GET['state']?: $_GET['sid'];
+
+        session_id($this->sid);
         session_start();
 
         $this->uuid = $_SESSION['uuid']?: $_GET['uuid'];
@@ -60,7 +64,8 @@ class Application
         $_SESSION['client_secret'] = $_POST['client_secret'];
 
         $params = [
-            'client_id' => $_SESSION['client_id']
+            'client_id' => $_SESSION['client_id'],
+            'state' => $this->sid
         ];
 
         if ($_SESSION['domain']) {
@@ -115,7 +120,7 @@ class Application
             $_SESSION['error_msg'] = 'Некорректно введённые данные';
         }
 
-        header('Location: ./');
+        header('Location: ./?sid=' . $this->sid);
     }
 
     /**
@@ -159,6 +164,6 @@ class Application
 
         session_unset();
 
-        header('Location: ./');
+        header('Location: ./?sid=' . $this->sid);
     }
 }
