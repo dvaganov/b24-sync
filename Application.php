@@ -47,6 +47,7 @@ class Application
         $client_id = $_SESSION['client_id'];
         $client_secret = $_SESSION['client_secret'];
         $refresh_token = $_SESSION['refresh_token'];
+        $sid = $this->sid;
 
         $error_msg = $_SESSION['error_msg'];
         unset($_SESSION['error_msg']);
