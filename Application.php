@@ -15,6 +15,7 @@ class Application
      */
     public function __construct()
     {
+        session_id($_GET['sid']);
         session_start();
 
         $this->uuid = $_SESSION['uuid']?: $_GET['uuid'];
